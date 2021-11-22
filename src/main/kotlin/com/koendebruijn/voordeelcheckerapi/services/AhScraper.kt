@@ -2,7 +2,6 @@ package com.koendebruijn.voordeelcheckerapi.services
 
 import com.koendebruijn.voordeelcheckerapi.dto.Product
 import org.jsoup.Jsoup
-import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
 import java.net.URL
 
@@ -10,16 +9,22 @@ import java.net.URL
 class AhScraper : SupermarketScraper {
     private final val baseUrl = "https://www.ah.nl/zoeken"
 
-    @Async
     override fun scrapeWebsite(productName: String): List<Product> {
         val products = mutableListOf<Product>()
         val query = "?query=$productName&kenmerk=bonus"
 
         val doc = Jsoup.connect(baseUrl + query).get()
 
+        val hasErrorElement = doc.getElementsByClass("error-message_root__1kiWb search-no-results_root__1MAOA").first()
+
+        if (hasErrorElement != null) {
+            return products
+        }
+
         val articles = doc.getElementsByClass("product-card-portrait_root__sZL4I")
 
         for (article in articles) {
+
             val nameElement = article.getElementsByTag("strong").first()
             val priceElement = article.getElementsByClass("price-amount_highlight__3WjBM").first()
             val oldPriceElement = article.getElementsByClass("price-amount_was__1PrUY").first()

@@ -5,8 +5,8 @@ import java.net.URL
 data class Product(
     val name: String,
     val price: Double,
-    val oldPrice: Double?,
-    val priceUnit: String?,
+    val oldPrice: Double? = null,
+    val priceUnit: String? = null,
     val discount: String,
     val imageUrl: URL,
     val productLink: URL,
