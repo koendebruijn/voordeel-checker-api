@@ -1,4 +1,4 @@
-package com.koendebruijn.voordeelcheckerapi.services
+package com.koendebruijn.voordeelcheckerapi.scrapers
 
 import com.koendebruijn.voordeelcheckerapi.dto.Product
 import org.jsoup.Jsoup
@@ -36,7 +36,7 @@ class AhScraper : SupermarketScraper {
 
             products.add(Product(
                 name = nameElement!!.text(),
-                supermarket = "AH",
+                supermarket = "Albert Heijn",
                 imageUrl = URL(imageSrcElement!!.attributes().get("src")),
                 discount = discountElement!!.text(),
                 oldPrice = oldPriceElement?.text()?.toDouble(),

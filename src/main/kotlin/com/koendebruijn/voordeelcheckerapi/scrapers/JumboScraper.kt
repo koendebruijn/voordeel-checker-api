@@ -1,4 +1,4 @@
-package com.koendebruijn.voordeelcheckerapi.services
+package com.koendebruijn.voordeelcheckerapi.scrapers
 
 import com.koendebruijn.voordeelcheckerapi.dto.Product
 import org.jsoup.Jsoup
