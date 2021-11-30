@@ -10,6 +10,7 @@ class AhScraper : SupermarketScraper {
     private final val baseUrl = "https://www.ah.nl/zoeken"
 
     override fun scrapeWebsite(productName: String): List<Product> {
+
         val products = mutableListOf<Product>()
         val query = "?query=$productName&kenmerk=bonus"
 
